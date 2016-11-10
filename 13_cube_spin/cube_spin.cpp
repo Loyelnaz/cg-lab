@@ -49,8 +49,8 @@ void myDisplay() {
 
 void cube_spin() {
     theta[axis] += 2.0;
-    while(theta[axis] > 360)
-        theta[axis] -= 360;
+    //while(theta[axis] > 360)
+    //    theta[axis] -= 360;
     glutPostRedisplay();
 }
 

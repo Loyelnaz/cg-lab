@@ -36,7 +36,6 @@ void myKeyboard(unsigned char key, int x, int y) {
         case 't': glutPostRedisplay();
                   break;
         case 'q': exit(0);
-                  break;
         default: break;
     }
 }

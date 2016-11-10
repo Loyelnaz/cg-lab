@@ -56,7 +56,7 @@ void draw_house() {
 void reflect() {
     float sin1 = sin(theta);
     float cos1 = cos(theta);
-    float x1=0, x2 = 500;
+    float x1 = 0, x2 = 500;
     float y1 = m * x1 + c;
     float y2 = m * x2 + c;
 
