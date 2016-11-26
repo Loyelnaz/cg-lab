@@ -1,4 +1,15 @@
+#ifdef __APPLE__
+
+#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
+
+#else
+
+#include <GL/gl.h>
 #include <GL/glut.h>
+
+#endif
+
 #include <iostream>
 using namespace std;
 
@@ -101,7 +112,7 @@ void myDisplay() {
 }
 
 int main(int argc, char **argv) {
-    cout << "Enter P1(x1, y1) and P2(x2, y2): ";
+    cout << "Enter end points, P1(x1, y1) and P2(x2, y2): ";
     cin >> x1 >> y1 >> x2 >> y2;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
