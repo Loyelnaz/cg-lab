@@ -43,13 +43,14 @@ void cohenSutherland(double x1, double y1, double x2, double y2) {
     bool accept = false;
 
     while(true) {
-        if(!(outcode0 | outcode1)) {
+        if(!(outcode0 | outcode1)) { //Bitwise OR is 0, accept it since the points lie completely inside the clip window
             accept = true;
             break;
         }
-        else if(outcode0 & outcode1)
+        else if(outcode0 & outcode1) //Bitwise AND is not 0, reject it since the points lie completely outside the clip window
             break;
         else {
+            //calculate line segment to clip from an outside point to an intersection with clip edge
             int outcodeOut = outcode0 ? outcode0 : outcode1;
             double x, y;
             double slope;
