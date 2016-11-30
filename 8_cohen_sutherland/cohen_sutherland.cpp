@@ -52,30 +52,32 @@ void cohenSutherland(double x1, double y1, double x2, double y2) {
         else {
             int outcodeOut = outcode0 ? outcode0 : outcode1;
             double x, y;
+            double slope;
+            slope = (y2 - y1) / (x2 - x1);
 
             if(outcodeOut & TOP) {
-                x = x1 + (x2 - x1) * (ymax - y1) / (y2 - y1);
+                x = x1 + (1 / slope) * (ymax - y1);
                 y = ymax;
             }
             else if(outcodeOut & BOTTOM) {
-                x = x1 + (x2 - x1) * (ymin - y1) / (y2 - y1);
+                x = x1 + (1 / slope) * (ymin - y1);
                 y = ymin;
             }
             else if(outcodeOut & RIGHT) {
-                y = y1 + (y2 - y1) * (xmax - x1) / (x2 - x1);
+                y = y1 + slope * (xmax - x1);
                 x = xmax;
             }
             else {
-                y = y1 + (y2 - y1) * (xmin - x1) / (x2 - x1);
+                y = y1 + slope * (xmin - x1);
                 x = xmin;
             }
 
             if(outcodeOut == outcode0) {
-                x1 = x; y1 = y;
+                x1 = x, y1 = y;
                 outcode0 = computeCode(x1, y1);
             }
             else {
-                x2 = x; y2 = y;
+                x2 = x, y2 = y;
                 outcode1 = computeCode(x2, y2);
             }
         }
