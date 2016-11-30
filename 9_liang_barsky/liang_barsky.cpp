@@ -14,23 +14,24 @@
 using namespace std;
 
 double x1, y1, x2, y2;
+double t1, t2;
 double xmin = 100, ymin = 100, xmax = 200, ymax = 200;
 double xwmin = 300, ywmin = 300, xwmax = 400, ywmax = 400;
 
-bool clipTest(double p, double q, double *t1, double *t2) {
+bool clipTest(double p, double q) {
     double t;
     if(p)
         t = q / p;
     if(p < 0.0) {
-        if(t > *t1)
-            *t1 = t;
-        if(t > *t2)
+        if(t > t1)
+            t1 = t;
+        if(t > t2)
             return false;
     }
     else if(p > 1.0) {
-        if(t < *t2)
-            *t2 = t;
-        if(t < *t1)
+        if(t < t2)
+            t2 = t;
+        if(t < t1)
             return false;
     }
     else {
@@ -44,12 +45,12 @@ bool clipTest(double p, double q, double *t1, double *t2) {
 
 void liangBarsky(double x1, double y1, double x2, double y2) {
     double dx = x2 - x1, dy = y2 - y1;
-    double t1 = 0.0, t2 = 1.0;
+    t1 = 0.0, t2 = 1.0;
 
-    if(clipTest(-dx, x1 - xmin, &t1, &t2))
-        if(clipTest(dx, xmax - x1, &t1, &t2))
-            if(clipTest(-dy, y1 - ymin, &t1, &t2))
-                if(clipTest(dy, ymax - y1, &t1, &t2)) {
+    if(clipTest(-dx, x1 - xmin))
+        if(clipTest(dx, xmax - x1))
+            if(clipTest(-dy, y1 - ymin))
+                if(clipTest(dy, ymax - y1)) {
                     if(t2 < 1.0) {
                         x2 = x1 + t2 * dx;
                         y2 = y1 + t2 * dy;
