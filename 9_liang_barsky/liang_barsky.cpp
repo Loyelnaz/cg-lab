@@ -28,7 +28,7 @@ bool clipTest(double p, double q) {
         if(t > t2)
             return false;
     }
-    else if(p > 1.0) {
+    else if(p > 0.0) {
         if(t < t2)
             t2 = t;
         if(t < t1)
