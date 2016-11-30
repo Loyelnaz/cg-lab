@@ -14,8 +14,6 @@
 #include <math.h>
 using namespace std;
 
-#define degree_radian 180.0/3.14159
-
 int single_buffer, double_buffer;
 GLfloat x, y, spin = 0.0;
 
@@ -51,11 +49,9 @@ void display_double() {
 }
 
 void spin_display() {
-    spin = spin + 0.00025;
-    if(spin > 360)
-        spin -= 360;
-    x = cos(degree_radian * spin);
-    y = sin(degree_radian * spin);
+    spin = spin + 0.025;
+    x = cos(spin);
+    y = sin(spin);
 
     glutSetWindow(single_buffer);
     glutPostRedisplay();
