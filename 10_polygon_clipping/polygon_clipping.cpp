@@ -39,8 +39,9 @@ void setup_polygon() {
 
 void clip_left_edge() {
     vector<Point> new_polygon;
+    int x, y;
     int n = (int) polygon.size();
-    cout << n;
+
     for (int i=0; i<n; i++) {
         Point v1 = polygon[i];
         Point v2 = polygon[(i + 1) % n];
@@ -52,9 +53,15 @@ void clip_left_edge() {
         // CASE 1 -> Outside to Inside
         if (v1.x <= left_edge_x && v2.x > left_edge_x) {
             // Find intersection (x, y)
-            double slope = (double)(v1.y - v2.y) / (v1.x - v2.x);
-            int x = left_edge_x;
-            int y =  (int) (v1.y + slope * (left_edge_x - v1.x));
+            if (v1.y == v2.y) {
+                x = left_edge_x;
+                y = v1.y;
+            }
+            else {
+                double slope = (double)(v1.y - v2.y) / (v1.x - v2.x);
+                x = left_edge_x;
+                y =  (int) (v1.y + slope * (left_edge_x - v1.x));
+            }
 
             Point v1_dash; v1_dash.x = x, v1_dash.y = y;
             new_polygon.push_back(v1_dash);
@@ -72,8 +79,8 @@ void clip_left_edge() {
         if (v1.x > left_edge_x && v2.x <= left_edge_x) {
             // Find intersection (x, y)
             double slope = (double)(v1.y - v2.y) / (v1.x - v2.x);
-            int x = left_edge_x;
-            int y =  (int) (v2.y + slope * (left_edge_x - v2.x));
+            x = left_edge_x;
+            y =  (int) (v2.y + slope * (left_edge_x - v2.x));
             Point v1_dash; v1_dash.x = x, v1_dash.y = y;
             new_polygon.push_back(v1_dash);
         }
@@ -84,7 +91,9 @@ void clip_left_edge() {
 
 void clip_right_edge() {
     vector<Point> new_polygon;
+    int x, y;
     int n = (int) polygon.size();
+    
     for (int i=0; i<n; i++) {
         Point v1 = polygon[i];
         Point v2 = polygon[(i + 1) % n];
@@ -96,9 +105,16 @@ void clip_right_edge() {
         // CASE 1 -> Outside to Inside
         if (v1.x >= right_edge_x && v2.x < right_edge_x) {
             // Find intersection (x, y)
-            double slope = (double)(v1.y - v2.y) / (v1.x - v2.x);
-            int x = right_edge_x;
-            int y =  (int) (v1.y + slope * (right_edge_x - v1.x));
+            if (v1.y == v2.y) {
+                x = right_edge_x;
+                y = v1.y;
+            }
+            else {
+                double slope = (double)(v1.y - v2.y) / (v1.x - v2.x);
+                x = right_edge_x;
+                y =  (int) (v1.y + slope * (right_edge_x - v1.x));
+            }
+
             Point v1_dash; v1_dash.x = x, v1_dash.y = y;
             new_polygon.push_back(v1_dash);
             new_polygon.push_back(v2);
@@ -115,8 +131,8 @@ void clip_right_edge() {
         if (v1.x < right_edge_x && v2.x >= right_edge_x) {
             // Find intersection (x, y)
             double slope = (double)(v1.y - v2.y) / (v1.x - v2.x);
-            int x = right_edge_x;
-            int y =  (int) (v2.y + slope * (right_edge_x - v2.x));
+            x = right_edge_x;
+            y =  (int) (v2.y + slope * (right_edge_x - v2.x));
 
             Point v1_dash; v1_dash.x = x, v1_dash.y = y;
             new_polygon.push_back(v1_dash);
@@ -128,7 +144,9 @@ void clip_right_edge() {
 
 void clip_bottom_edge() {
     vector<Point> new_polygon;
+    int x, y;
     int n = (int) polygon.size();
+
     for (int i=0; i<n; i++) {
         Point v1 = polygon[i];
         Point v2 = polygon[(i + 1) % n];
@@ -139,7 +157,6 @@ void clip_bottom_edge() {
 
         // CASE 1 -> Outside to Inside
         if (v1.y <= bottom_edge_y && v2.y > bottom_edge_y) {
-            int x, y;
             // Find intersection (x, y)
             if (v1.x == v2.x) {
                 y = bottom_edge_y;
@@ -183,7 +200,9 @@ void clip_bottom_edge() {
 
 void clip_top_edge() {
     vector<Point> new_polygon;
+    int x, y;
     int n = (int) polygon.size();
+
     for (int i=0; i<n; i++) {
         Point v1 = polygon[i];
         Point v2 = polygon[(i + 1) % n];
@@ -194,7 +213,6 @@ void clip_top_edge() {
 
         // CASE 1 -> Outside to Inside
         if (v1.y >= top_edge_y && v2.y < top_edge_y) {
-            int x, y;
             // Find intersection (x, y)
             if (v1.x == v2.x) {
                 y = top_edge_y;
