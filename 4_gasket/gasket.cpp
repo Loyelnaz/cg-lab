@@ -17,7 +17,6 @@ float v[4][3]={{0,0,100},{0,90,30},{-80,-50,-30},{80,-50,-30}};
 void myInit() {
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glMatrixMode(GL_PROJECTION);
     glOrtho(-100, 100, -100, 100, -100, 100);
 }
 

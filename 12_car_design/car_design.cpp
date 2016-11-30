@@ -15,18 +15,23 @@ using namespace std;
 
 #define CAR 1
 
+float car_points[8][3] = {
+                            {0.0, 25.0, 0.0},
+                            {90.0, 25.0, 0.0},
+                            {90.0, 55.0, 0.0},
+                            {80.0, 55.0, 0.0},
+                            {80.0, 75.0, 0.0},
+                            {20.0, 75.0, 0.0},
+                            {20.0, 55.0, 0.0},
+                            {0.0, 55.0, 0.0}
+                        };
+
 void carlist() {
     glNewList(CAR, GL_COMPILE);
         glColor3f(1.0, 1.0, 1.0);
         glBegin(GL_POLYGON);
-            glVertex3f(0.0, 25.0, 0.0);
-            glVertex3f(90.0, 25.0, 0.0);
-            glVertex3f(90.0, 55.0, 0.0);
-            glVertex3f(80.0, 55.0, 0.0);
-            glVertex3f(80.0, 75.0, 0.0);
-            glVertex3f(20.0, 75.0, 0.0);
-            glVertex3f(20.0, 55.0, 0.0);
-            glVertex3f(0.0, 55.0, 0.0);
+            for(int i = 0; i < 8; i++)
+                glVertex3fv(car_points[i]);
         glEnd();
     glEndList();
 }

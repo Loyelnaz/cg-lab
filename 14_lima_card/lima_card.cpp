@@ -42,6 +42,7 @@ void draw_curve(int curveNum) {
     glColor3f(0.0, 0.0, 0.0);
     curvePt[0].x = x0;
     curvePt[0].y = y0;
+
     switch(curveNum) {
         case 1: curvePt[0].x += a + b;
                 break;
@@ -85,7 +86,7 @@ int main(int argc, char **argv) {
     cout << "1. Limacon\n2. Cardiod\n3.Three-Leaf\n4.Spiral" << endl;
     cout << "Enter user choice : ";
     cin >> curveNum;
-    int curveNum;
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(600, 500);

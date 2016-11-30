@@ -15,7 +15,7 @@
 using namespace std;
 
 int single_buffer, double_buffer;
-GLfloat x, y, spin = 0.0;
+float x, y, spin = 0.0;
 
 void myInit() {
     glClearColor(1.0, 1.0, 1.0, 1.0);
