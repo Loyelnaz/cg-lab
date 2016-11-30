@@ -14,6 +14,7 @@
 using namespace std;
 
 float x1 = 200, y1 = 200, x2 = 100, y2 = 300, x3 = 200, y3 = 400, x4 = 300, y4 = 300;
+int left_edge[500], right_edge[500];
 
 void draw_pixel(int x, int y) {
     glPointSize(1.0);
@@ -22,7 +23,7 @@ void draw_pixel(int x, int y) {
     glEnd();
 }
 
-void edgeDetect(float x1, float y1, float x2, float y2, int *left_edge, int *right_edge) {
+void edgeDetect(float x1, float y1, float x2, float y2) {
     float temp, mx, x;
 
     if(y1 > y2) {
@@ -47,17 +48,16 @@ void edgeDetect(float x1, float y1, float x2, float y2, int *left_edge, int *rig
     }
 }
 
-void scanfill(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
-    int left_edge[500], right_edge[500];
+void scanfill() {
     for(int i = 0; i < 500; i++) {
         left_edge[i] = 500;
         right_edge[i] = 0;
     }
 
-    edgeDetect(x1, y1, x2, y2, left_edge, right_edge);
-    edgeDetect(x2, y2, x3, y3, left_edge, right_edge);
-    edgeDetect(x3, y3, x4, y4, left_edge, right_edge);
-    edgeDetect(x4, y4, x1, y1, left_edge, right_edge);
+    edgeDetect(x1, y1, x2, y2);
+    edgeDetect(x2, y2, x3, y3);
+    edgeDetect(x3, y3, x4, y4);
+    edgeDetect(x4, y4, x1, y1);
 
     for(int y = 0; y < 500; y++) {
         if(left_edge[y] <= right_edge[y]) {
@@ -87,7 +87,7 @@ void scanfillDisplay() {
     glEnd();
 
     glColor3f(0.0, 0.0, 1.0);
-    scanfill(x1, y1, x2, y2, x3, y3, x4, y4);
+    scanfill();
     glFlush();
 }
 
