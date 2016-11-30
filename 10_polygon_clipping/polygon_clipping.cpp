@@ -40,6 +40,7 @@ void setup_polygon() {
 void clip_left_edge() {
     vector<Point> new_polygon;
     int n = (int) polygon.size();
+    cout << n;
     for (int i=0; i<n; i++) {
         Point v1 = polygon[i];
         Point v2 = polygon[(i + 1) % n];

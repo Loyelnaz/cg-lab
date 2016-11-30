@@ -36,6 +36,12 @@ GLubyte cube_indices[] = {0, 1, 2, 3,
 static GLfloat theta[] = {0.0, 0.0, 0.0};
 static GLint axis = 2;
 
+void myInit() {
+    glMatrixMode(GL_PROJECTION);
+    glOrtho(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
+    glMatrixMode(GL_MODELVIEW);
+}
+
 void myDisplay() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -49,8 +55,6 @@ void myDisplay() {
 
 void cube_spin() {
     theta[axis] += 2.0;
-    //while(theta[axis] > 360)
-    //    theta[axis] -= 360;
     glutPostRedisplay();
 }
 
@@ -63,23 +67,13 @@ void mouse(int btn, int state, int x, int y) {
         axis = 2;
 }
 
-void myReshape(int w, int h) {
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    if(w <= h)
-        glOrtho(-2.0, 2.0, -2.0 * (GLfloat) h / (GLfloat) w, 2.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
-    else
-        glOrtho(-2.0 * (GLfloat) h / (GLfloat) w, 2.0 * (GLfloat) h / (GLfloat) w, -2.0, 2.0, -10.0, 10.0);
-    glMatrixMode(GL_MODELVIEW);
-}
-
 int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(600, 600);
     glutInitWindowPosition(0, 0);
     glutCreateWindow("Cube Spin");
-    glutReshapeFunc(myReshape);
+    myInit();
     glutDisplayFunc(myDisplay);
     glutIdleFunc(cube_spin);
     glutMouseFunc(mouse);
