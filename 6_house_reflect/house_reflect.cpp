@@ -19,13 +19,6 @@ float house[2][9]={ {100.0, 100.0, 250.0, 250.0, 175.0, 150.0, 150.0, 200.0, 200
 
 float theta, m, c;
 
-void myInit() {
-    glClearColor(1.0,1.0,1.0,1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    gluOrtho2D(-300, 500.0, -300, 500.0);
-    glColor3f(1.0, 0.0, 0.0);
-}
-
 void draw_house() {
     glBegin(GL_LINE_LOOP);
         glVertex2f(house[0][0],house[1][0]);
@@ -46,6 +39,13 @@ void draw_house() {
     glEnd();
 }
 
+void myInit() {
+    glClearColor(1.0,1.0,1.0,1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    gluOrtho2D(-300, 500.0, -300, 500.0);
+    glColor3f(1.0, 0.0, 0.0);
+}
+
 void reflect() {
     float x1 = 0, x2 = 500;
     float y1 = m * x1 + c;
@@ -64,7 +64,7 @@ void reflect() {
     draw_house();
 }
 
-void display() {
+void myDisplay() {
     draw_house();
     reflect();
     glFlush();
@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
     glutInitWindowSize(500,500);
     glutInitWindowPosition(0,0);
     glutCreateWindow("house rotation");
-    glutDisplayFunc(display);
+    glutDisplayFunc(myDisplay);
     myInit();
     glutMainLoop();
     return 0;

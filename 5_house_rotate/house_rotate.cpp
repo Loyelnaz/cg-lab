@@ -47,12 +47,12 @@ void myInit() {
 }
 
 void rotate() {
-    glPushMatrix();
+    //glPushMatrix();
     glTranslatef(h, k, 0.0);
     glRotatef(theta, 0.0, 0.0, 1.0);
     glTranslatef(-h, -k, 0.0);
     draw_house();
-    glPopMatrix();
+    //glPopMatrix();
 }
 
 void myDisplay() {
