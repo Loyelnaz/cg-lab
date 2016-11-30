@@ -28,7 +28,7 @@ int computeCode(int x, int y) {
         code |= LEFT;
     else if(x > xmax)
         code |= RIGHT;
-    else if(y < ymin)
+    if(y < ymin)
         code |= BOTTOM;
     else if(y > ymax)
         code |= TOP;
