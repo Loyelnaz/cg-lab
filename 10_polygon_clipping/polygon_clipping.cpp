@@ -93,7 +93,7 @@ void clip_right_edge() {
     vector<Point> new_polygon;
     int x, y;
     int n = (int) polygon.size();
-    
+
     for (int i=0; i<n; i++) {
         Point v1 = polygon[i];
         Point v2 = polygon[(i + 1) % n];
@@ -297,13 +297,13 @@ int main(int argc, char* argv[]) {
 
     glutInitWindowSize(600, 600);
     glutInitWindowPosition(0, 0);
-    glutCreateWindow("Polygon!");
+    glutCreateWindow("Polygon");
     myInit();
     glutDisplayFunc(display);
 
     glutInitWindowSize(600, 600);
-    glutInitWindowPosition(650, 0);
-    glutCreateWindow("Polygon Clipped!");
+    glutInitWindowPosition(600, 0);
+    glutCreateWindow("Clipped Polygon");
     myInit();
     glutDisplayFunc(display2);
 
